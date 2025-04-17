@@ -1,9 +1,6 @@
 <template>
   <div class="dashboard">
-    <!-- Centered Overview -->
     <h1 class="overview-title">Overview</h1>
-
-    <!-- Cards side by side -->
     <div class="chart-wrapper">
       <!-- Pie Chart Card -->
       <div class="chart-card">
@@ -37,9 +34,9 @@ import {
   LinearScale,
   PointElement,
   LineElement,
-  DoughnutController
-} from 'chart.js'
-import { Doughnut, Line } from 'vue-chartjs'
+  DoughnutController,
+} from "chart.js";
+import { Doughnut, Line } from "vue-chartjs";
 
 // Register charts
 ChartJS.register(
@@ -53,102 +50,102 @@ ChartJS.register(
   PointElement,
   LineElement,
   {
-    id: 'centerText',
+    id: "centerText",
     afterDraw: (chart) => {
       const ctx = chart.ctx;
       const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
       const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
 
       ctx.save();
-      ctx.font = 'bold 24px Arial';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#333';
-      ctx.fillText('159 • 159', centerX, centerY);
+      ctx.font = "bold 24px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "#333";
+      ctx.fillText("159 • 159", centerX, centerY);
       ctx.restore();
-    }
+    },
   }
-)
+);
 
 // Pie chart data
 const chartData = {
-  labels: ['0 - 1K', '1K - 10K', '10K - 100K', '100K - 1M'],
+  labels: ["0 - 1K", "1K - 10K", "10K - 100K", "100K - 1M"],
   datasets: [
     {
-      label: 'User Logins',
+      label: "User Logins",
       data: [25, 25, 25, 25],
-      backgroundColor: ['#A6B3F0', '#7281D3', '#4755A8', '#1E2A6B'],
+      backgroundColor: ["#A6B3F0", "#7281D3", "#4755A8", "#1E2A6B"],
       borderWidth: 0,
-      hoverOffset: 8
-    }
-  ]
-}
+      hoverOffset: 8,
+    },
+  ],
+};
 
 const chartOptions = {
-  cutout: '70%',
+  cutout: "70%",
   responsive: true,
   plugins: {
     legend: {
-      position: 'right',
+      position: "right",
       labels: {
         usePointStyle: true,
-        pointStyle: 'circle',
+        pointStyle: "circle",
         padding: 16,
         font: {
-          size: 14
-        }
-      }
+          size: 14,
+        },
+      },
     },
     tooltip: { enabled: false },
-    title: { display: false }
-  }
-}
+    title: { display: false },
+  },
+};
 
 // Line chart data
 const lineChartData = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
   datasets: [
     {
-      label: 'Avg Watch Time (hrs)',
+      label: "Avg Watch Time (hrs)",
       data: [12, 15, 9, 14, 18, 20],
-      borderColor: '#4755A8',
-      backgroundColor: '#A6B3F0',
+      borderColor: "#4755A8",
+      backgroundColor: "#A6B3F0",
       tension: 0.3,
       fill: true,
-      pointBackgroundColor: '#1E2A6B'
-    }
-  ]
-}
+      pointBackgroundColor: "#1E2A6B",
+    },
+  ],
+};
 
 const lineChartOptions = {
   responsive: true,
   plugins: {
     legend: {
       display: true,
-      position: 'top'
+      position: "top",
     },
     tooltip: {
       callbacks: {
-        label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} hrs`
-      }
-    }
+        label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} hrs`,
+      },
+    },
   },
   scales: {
     y: {
       beginAtZero: true,
       title: {
         display: true,
-        text: 'Watch Time (hrs)'
-      }
+        text: "Watch Time (hrs)",
+      },
     },
     x: {
       title: {
         display: true,
-        text: 'Months'
-      }
-    }
-  }
-}
+        text: "Months",
+      },
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -207,7 +204,7 @@ const lineChartOptions = {
 button {
   display: block;
   margin: 0 auto;
-  background: #4755A8;
+  background: #4755a8;
   color: white;
   padding: 8px 24px;
   border-radius: 6px;
